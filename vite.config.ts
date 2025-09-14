@@ -5,6 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // Add base path for deployment
+  base: '/',
+  
   server: {
     host: "::",
     port: 8080,
@@ -15,4 +18,19 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  
+  // Build configuration for proper MIME types
+  build: {
+    // Ensure proper MIME types for modules
+    rollupOptions: {
+      output: {
+        // Ensure proper module format
+        format: 'es',
+        // Add proper file extensions
+        entryFileNames: '[name].js',
+        chunkFileNames: '[name].js',
+        assetFileNames: '[name].[ext]'
+      }
+    }
+  }
 }));

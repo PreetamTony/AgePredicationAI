@@ -1,0 +1,24 @@
+# MIME type configuration for JavaScript modules
+<IfModule mod_mime.c>
+  AddType text/javascript .js
+  AddType text/javascript .mjs
+  AddType text/javascript .ts
+</IfModule>
+
+# Enable CORS if needed
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+# Handle module scripts properly
+<Files "*.js">
+  ForceType text/javascript
+</Files>
+
+<Files "*.mjs">
+  ForceType text/javascript
+</Files>
+
+<Files "*.ts">
+  ForceType text/javascript
+</Files>
